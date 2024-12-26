@@ -1,4 +1,4 @@
-# Glassify
+# Glasify
 
 ## Descripción
 Glassify es una aplicación desarrollada en Next.js que permite calcular precios para diversos productos como ventanas, espejos, barandas, entre otros. La idea central es partir de un modelo básico definido por un ancho (“width”) y alto (“height”), sobre el cual se aplican fórmulas específicas para calcular costos. Estas fórmulas aprovechan datos provenientes de una base de datos, que almacena los insumos y precios base necesarios. Glassify implementa el patrón de diseño Abstract Factory para garantizar flexibilidad y escalabilidad en el manejo de diferentes tipos de productos y cálculos.
@@ -77,9 +77,9 @@ El usuario puede generar un archivo PDF con el detalle completo de la cotizació
 
 ## Tecnologías utilizadas
 - **Frontend**: Next.js, React.
-- **Backend**: API REST o GraphQL para la gestión de datos.
-- **Base de datos**: MySQL/PostgreSQL para almacenar insumos y precios base.
-- **Estilos**: Tailwind CSS o CSS-in-JS para diseño responsivo.
+- **Backend**: Server Actions para la gestión de datos.
+- **Base de datos**:PostgreSQL para almacenar insumos y precios base.
+- **Estilos**: SahdcnUI - Tailwind CSS o CSS-in-JS para diseño responsivo.
 - **Patrón de diseño**: Abstract Factory para la generación de lógicas específicas por producto.
 - **Generación de PDFs**: Librerías como jsPDF o Puppeteer.
 
@@ -90,10 +90,7 @@ El usuario puede generar un archivo PDF con el detalle completo de la cotizació
 ### Futuras mejoras
 - **Autenticación de usuarios**: Permitir el inicio de sesión para guardar configuraciones y cotizaciones.
 - **Historial de cotizaciones**: Los usuarios podrán acceder a cotizaciones anteriores.
-- **Integración de pago**: Opciones para procesar pagos en línea.
-- **Soporte multilenguaje**: Incorporar diferentes idiomas para una mejor experiencia de usuario.
-- **Simulador 3D**: Vista previa del producto configurado en un entorno tridimensional.
-
+- **Lenguajes de soporte**: Español.
 ---
 
 ## Contribución
