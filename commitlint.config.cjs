@@ -27,3 +27,4 @@ const config = {
 };
 
 module.exports = config;
+// Ejemplo: git commit -m "config: add config project lint and format" -m "Refs: #123"
