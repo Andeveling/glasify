@@ -15,3 +15,70 @@ model User {
 
   @@map("users")
 }
+
+model Product {
+  id        Int        @id @default(autoincrement())
+  name      String
+  minWidth  Int
+  minHeight Int
+  maxWidth  Int
+  maxHeight Int
+  materials Material[]
+
+  @@map("products")
+}
+
+model Material {
+  id            Int           @id @default(autoincrement())
+  type          MaterialType
+  price         Float
+  unitOfMeasure UnitOfMeasure
+  product       Product[]
+
+  @@map("materials")
+}
+
+model ProductsMaterials {
+  productId  Int
+  materialId Int
+  quantity   Int
+
+  @@id([productId, materialId])
+  @@map("product_materials")
+}
+
+model ProductsServices {
+  productId Int
+  serviceId Int
+  price Float
+
+  @@id([productId, serviceId])
+  @@map("product_services")
+}
+
+model Service {
+  id    Int         @id @default(autoincrement())
+  name  String
+  type  ServiceType
+  price Int
+
+  @@map("services")
+}
+
+enum ServiceType {
+  Delivery
+  Installation
+  Dismount
+}
+
+enum MaterialType {
+  Profile
+  Accessories
+  Glass
+}
+
+enum UnitOfMeasure {
+  linealMeters
+  squareMeters
+  Units
+}
