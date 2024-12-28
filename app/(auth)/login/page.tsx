@@ -1,4 +1,4 @@
-import LoginForm from "./login-form"
+import LoginForm from './login-form';
 
 export default function LoginPage() {
   // TODO: Create container for login page and signup page
@@ -6,5 +6,5 @@ export default function LoginPage() {
     <div>
       <LoginForm />
     </div>
-  )
+  );
 }
