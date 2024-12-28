@@ -1,7 +1,7 @@
 # Glasify
 
 ## Descripción
-Glassify es una aplicación desarrollada en Next.js que permite calcular precios para diversos productos como ventanas, espejos, barandas, entre otros. La idea central es partir de un modelo básico definido por un ancho (“width”) y alto (“height”), sobre el cual se aplican fórmulas específicas para calcular costos. Estas fórmulas aprovechan datos provenientes de una base de datos, que almacena los insumos y precios base necesarios. Glassify implementa el patrón de diseño Abstract Factory para garantizar flexibilidad y escalabilidad en el manejo de diferentes tipos de productos y cálculos.
+Glassify es una aplicación desarrollada en Next.js que permite calcular precios para diversos productos como ventanas, espejos, barandas, entre otros. La idea central es partir de una superficie definida por un ancho (“width”) y alto (“height”), sobre el cual se aplican fórmulas específicas para calcular costos. Estas fórmulas aprovechan datos provenientes de una base de datos, que almacena los insumos y precios base necesarios. Glassify implementa el patrón de diseño Abstract Factory para garantizar flexibilidad y escalabilidad en el manejo de diferentes tipos de productos y cálculos.
 
 ---
 
