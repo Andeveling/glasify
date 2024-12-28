@@ -60,7 +60,7 @@ model Service {
   id    Int         @id @default(autoincrement())
   name  String
   type  ServiceType
-  price Int
+  price Float
 
   @@map("services")
 }
