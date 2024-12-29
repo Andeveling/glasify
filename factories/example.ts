@@ -20,6 +20,4 @@ const aluminiumWindow = aluminiumWindowFactory.createProduct(
   [transportationService, installationService]
 );
 
-
-
 console.log(aluminiumWindow.calculateCost());
