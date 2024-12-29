@@ -134,8 +134,8 @@ model Finish {
 model Dimension {
   id        Int     @id @default(autoincrement())
   productId Int
-  width     Float // Width in meters
-  height    Float // Height in meters
+  width     Float // Width in millimeters
+  height    Float // Height in millimeters
   area      Float // Calculated area (width * height)
   product   Product @relation(fields: [productId], references: [id])
 
