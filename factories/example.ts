@@ -14,10 +14,12 @@ const installationService = factory.createService('Installation', 20, 'Hour');
 
 const aluminiumWindowFactory = new AluminiumWindowFactory();
 const aluminiumWindow = aluminiumWindowFactory.createProduct(
-  1.2, // width
-  1.0, // height
+  1.2, // width meters
+  1.0, // height meters
   [frameProfile, sashProfile, overlapProfile, lock, wheels, glass],
   [transportationService, installationService]
 );
+
+
 
 console.log(aluminiumWindow.calculateCost());
