@@ -17,15 +17,33 @@ model User {
 }
 
 model Product {
-  id        Int        @id @default(autoincrement())
-  name      String
-  minWidth  Int
-  minHeight Int
-  maxWidth  Int
-  maxHeight Int
-  materials Material[]
+  id          Int             @id @default(autoincrement())
+  name        String
+  minWidth    Int
+  minHeight   Int
+  maxWidth    Int
+  maxHeight   Int
+  description String
+  categoryId  Int
+  category    ProductCategory @relation(fields: [categoryId], references: [id])
+
+  materials   ProductsMaterials[]
+  services    ProductsServices[]
+  finishes    ProductFinish[]
+  glasses     ProductGlass[]
+  dimensions  Dimension[]
+  accessories ProductAccessory[]
 
   @@map("products")
+}
+
+model ProductCategory {
+  id          Int       @id @default(autoincrement())
+  name        String // e.g., "Window", "Mirror", "Shower", "Glass Door"
+  description String
+  products    Product[]
+
+  @@map("product_categories")
 }
 
 model Material {
@@ -33,7 +51,8 @@ model Material {
   type          MaterialType
   price         Float
   unitOfMeasure UnitOfMeasure
-  product       Product[]
+
+  products ProductsMaterials[]
 
   @@map("materials")
 }
@@ -43,17 +62,11 @@ model ProductsMaterials {
   materialId Int
   quantity   Int
 
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  material Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
   @@id([productId, materialId])
   @@map("product_materials")
-}
-
-model ProductsServices {
-  productId Int
-  serviceId Int
-  price Float
-
-  @@id([productId, serviceId])
-  @@map("product_services")
 }
 
 model Service {
@@ -62,23 +75,116 @@ model Service {
   type  ServiceType
   price Float
 
+  products ProductsServices[]
+
   @@map("services")
 }
 
+model ProductsServices {
+  productId Int
+  serviceId Int
+  price     Float
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  service Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([productId, serviceId])
+  @@map("product_services")
+}
+
+model ProductGlass {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  glassId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  glass     Glass   @relation(fields: [glassId], references: [id])
+
+  @@map("product_glasses")
+}
+
+model Glass {
+  id         Int            @id @default(autoincrement())
+  type       String
+  thickness  Int
+  pricePerM2 Float
+  products   ProductGlass[]
+
+  @@map("glasses")
+}
+
+model ProductFinish {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  finishId  Int
+  product   Product @relation(fields: [productId], references: [id])
+  finish    Finish  @relation(fields: [finishId], references: [id])
+
+  @@map("product_finishes")
+}
+
+model Finish {
+  id             Int             @id @default(autoincrement())
+  name           String
+  additionalCost Float
+  products       ProductFinish[]
+
+  @@map("finishes")
+}
+
+model Dimension {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  width     Float // Width in millimeters
+  height    Float // Height in millimeters
+  area      Float // Calculated area (width * height)
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@map("dimensions")
+}
+
+model Accessory {
+  id            Int           @id @default(autoincrement())
+  name          String
+  type          AccessoryType
+  price         Float
+  unitOfMeasure UnitOfMeasure
+
+  products ProductAccessory[]
+
+  @@map("accessories")
+}
+
+model ProductAccessory {
+  productId   Int
+  accessoryId Int
+  quantity    Int
+
+  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  accessory Accessory @relation(fields: [accessoryId], references: [id], onDelete: Cascade)
+
+  @@id([productId, accessoryId])
+  @@map("product_accessories")
+}
+
 enum ServiceType {
-  Delivery
-  Installation
-  Dismount
+  delivery
+  installation
+  dismount
 }
 
 enum MaterialType {
-  Profile
-  Accessories
-  Glass
+  profile
+  reinforcement
+}
+
+enum AccessoryType {
+  handle
+  lock
+  hinge
 }
 
 enum UnitOfMeasure {
-  linealMeters
+  linearMeters
   squareMeters
-  Units
+  units
 }
